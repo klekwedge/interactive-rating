@@ -25,7 +25,7 @@
         </li>
       </ul>
 
-      <button @click="isVisible = !isVisible" class="card__button">
+      <button :disabled="activeRating === null" @click="isVisible = !isVisible" class="card__button">
         Submit
       </button>
     </div>
@@ -116,10 +116,15 @@ const rates = ref([1, 2, 3, 4, 5]);
       width: 100%;
       height: 2.5rem;
       letter-spacing: 2px;
-      &:hover {
+      &:hover:not(:disabled) {
         background-color: white;
         color: $orange;
         transition: 0.5s;
+      }
+
+      &:disabled {
+        background-color: gray;
+        cursor: not-allowed;
       }
     }
   }
