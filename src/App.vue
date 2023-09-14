@@ -17,24 +17,30 @@
         <li
           v-for="rate in rates"
           :key="rate"
-          @click="activeRef = rate"
+          @click="activeRating = rate"
           class="card__rating"
-          :class="{ active: activeRef === rate }"
+          :class="{ active: activeRating === rate }"
         >
           {{ rate }}
         </li>
       </ul>
 
-      <button @click="isVisible = !isVisible" class="card__button">Submit</button>
+      <button @click="isVisible = !isVisible" class="card__button">
+        Submit
+      </button>
     </div>
   </main>
+  <div v-show="isVisible">
+    <Result :activeRating="activeRating" />
+  </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import Result from "./components/Result.vue";
 
 const isVisible = ref(false);
-const activeRef = ref(null);
+const activeRating = ref(null);
 const rates = ref([1, 2, 3, 4, 5]);
 </script>
 
